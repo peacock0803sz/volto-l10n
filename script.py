@@ -38,3 +38,19 @@ def match(pofile):
         else:
     # fetched_strs = [plone_strs[i[0]][i[1]] for i in plone_fetched_indexes]
     return volto_ids, fetched_strs
+            matched.append((None, None))
+    return matched
+
+
+def write(matched):
+    with open(VOLTO_FILE, mode='r') as r:
+        lines = r.readlines()
+        for j in range(10, len(lines)):
+            if lines[j].startswith(ID_PREFIX):
+                for i in range(len(matched)):
+                    if lines[j].startswith(f'msgid "{matched[i][0]}'):
+                        print(matched[i])
+                        lines[j + 1] = f'msgstr "{matched[i][1]}"\n'
+                        break
+    with open(VOLTO_FILE, mode='w') as w:
+        w.writelines(lines)
