@@ -5,10 +5,6 @@ ID_PREFIX = 'msgid "'
 
 
 def initialize():
-    # po = polib.POFile
-    # entries = []
-    # for i in range(len(volto_ids)):
-    #     entries[i] = polib.POEntry(msgid=volto_ids[i], msgstr='')
     with open(VOLTO_FILE, mode='r') as r:
         lines = r.readlines()
     for i in range(20, len(lines)):
@@ -36,8 +32,6 @@ def match(pofile):
         if i is not None:
             matched.append((plone_ids[i], plone_strs[i]))
         else:
-    # fetched_strs = [plone_strs[i[0]][i[1]] for i in plone_fetched_indexes]
-    return volto_ids, fetched_strs
             matched.append((None, None))
     return matched
 
