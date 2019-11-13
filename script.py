@@ -54,3 +54,16 @@ def write(matched):
                         break
     with open(VOLTO_FILE, mode='w') as w:
         w.writelines(lines)
+
+
+def main():
+    initialize()
+    pofiles = ['atcontenttypes.po', 'cmfeditions.po', 'plone.po', 'plonelocales.po',
+               'atreferencebrowserwidget.po', 'cmfplacefulworkflow.po', 'plonefrontpage.po', 'widgets.po']
+    for po in pofiles:
+        write(match(po))
+        # print(fetch(po))
+
+
+if __name__ == '__main__':
+    main()
